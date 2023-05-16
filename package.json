@@ -1,6 +1,6 @@
 {
     "name": "openai-lite",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "A lightweight OpenAI npm package in TypeScript. Works with Vercel API routes and Edge functions",
     "main": "dist/index.js",
     "scripts": {

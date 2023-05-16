@@ -67,7 +67,8 @@ export class OpenAILite {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return response.json();
+    const streaming = "stream" in params && params.stream;
+    return streaming ? response : response.json();
   }
 
   public complete(params: CompletionParameters) {
