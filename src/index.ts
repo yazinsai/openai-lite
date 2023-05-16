@@ -47,7 +47,7 @@ export interface TranscriptionParameters {
   response_format?: string;
 }
 
-class OpenAILite {
+export class OpenAILite {
   client: AxiosInstance;
   apiKey: string;
 
