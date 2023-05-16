@@ -1,5 +1,3 @@
-import axios, { AxiosInstance } from "axios";
-
 export interface CompletionParameters {
   model: string;
   prompt?: string | Array<string>;
@@ -48,34 +46,44 @@ export interface TranscriptionParameters {
 }
 
 export class OpenAILite {
-  client: AxiosInstance;
   apiKey: string;
+  baseURL: string = "https://api.openai.com/v1";
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
-    this.client = axios.create({
-      baseURL: "https://api.openai.com/v1",
+  }
+
+  private async request(endpoint: string, params: any) {
+    const response = await fetch(this.baseURL + endpoint, {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(params),
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
   }
 
-  public async complete(params: CompletionParameters) {
-    return this.client.post("/completions", params);
+  public complete(params: CompletionParameters) {
+    return this.request("/completions", params);
   }
 
-  public async chat(params: ChatParameters) {
-    return this.client.post("/chat/completions", params);
+  public chat(params: ChatParameters) {
+    return this.request("/chat/completions", params);
   }
 
-  public async embed(params: EmbeddingParameters) {
-    return this.client.post("/embeddings", params);
+  public embed(params: EmbeddingParameters) {
+    return this.request("/embeddings", params);
   }
 
-  public async transcribe(params: TranscriptionParameters) {
-    return this.client.post("/audio/transcriptions", params);
+  public transcribe(params: TranscriptionParameters) {
+    return this.request("/audio/transcriptions", params);
   }
 }
 
