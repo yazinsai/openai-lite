@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-interface CompletionParameters {
+export interface CompletionParameters {
   model: string;
   prompt?: string | Array<string>;
   suffix?: string;
@@ -19,7 +19,7 @@ interface CompletionParameters {
   user?: string;
 }
 
-interface ChatParameters {
+export interface ChatParameters {
   model: string;
   messages: Array<{ role: string; content: string }>;
   temperature?: number;
@@ -34,13 +34,13 @@ interface ChatParameters {
   user?: string;
 }
 
-interface EmbeddingParameters {
+export interface EmbeddingParameters {
   model: string;
   input: string | Array<string>;
   user?: string;
 }
 
-interface TranscriptionParameters {
+export interface TranscriptionParameters {
   file: string;
   model: string;
   prompt?: string;
@@ -48,8 +48,8 @@ interface TranscriptionParameters {
 }
 
 class OpenAILite {
-  private client: AxiosInstance;
-  private apiKey: string;
+  client: AxiosInstance;
+  apiKey: string;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
