@@ -26,7 +26,7 @@ describe("OpenAILite", () => {
     const response = { data: "Translated text" };
     instance.post.mockResolvedValue(response);
 
-    const result = await openai.createCompletion(params);
+    const result = await openai.complete(params);
     expect(result).toBe(response);
     expect(instance.post).toHaveBeenCalledWith("/completions", params);
   });
@@ -47,7 +47,7 @@ describe("OpenAILite", () => {
     const response = { data: "Chat completion" };
     instance.post.mockResolvedValue(response);
 
-    const result = await openai.createChatCompletion(params);
+    const result = await openai.chat(params);
     expect(result).toBe(response);
     expect(instance.post).toHaveBeenCalledWith("/chat/completions", params);
   });
@@ -61,7 +61,7 @@ describe("OpenAILite", () => {
     const response = { data: "Embedding" };
     instance.post.mockResolvedValue(response);
 
-    const result = await openai.createEmbedding(params);
+    const result = await openai.embed(params);
     expect(result).toBe(response);
     expect(instance.post).toHaveBeenCalledWith("/embeddings", params);
   });
@@ -75,7 +75,7 @@ describe("OpenAILite", () => {
     const response = { data: "Transcription" };
     instance.post.mockResolvedValue(response);
 
-    const result = await openai.createTranscription(params);
+    const result = await openai.transcribe(params);
     expect(result).toBe(response);
     expect(instance.post).toHaveBeenCalledWith("/audio/transcriptions", params);
   });

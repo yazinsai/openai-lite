@@ -34,10 +34,10 @@ const prompt =
   'Translate the following English text to French: "{text: "Hello, world!"}"';
 
 openai
-  .createCompletion({
+  .complete({
     model: "text-davinci-003",
     prompt,
-    maxTokens: 60,
+    max_tokens: 60,
   })
   .then((response) => {
     console.log(response.choices[0].text.trim());
@@ -56,7 +56,7 @@ const messages = [
 ];
 
 openai
-  .createChatCompletion({
+  .chat({
     model: "gpt-3.5-turbo",
     messages,
   })
@@ -72,7 +72,7 @@ openai
 
 ```typescript
 openai
-  .createEmbedding({
+  .embed({
     model: "text-embedding-ada-002",
     input: "The quick brown fox jumps over the lazy dog.",
   })
@@ -88,7 +88,7 @@ openai
 
 ```typescript
 openai
-  .createTranscription({
+  .transcribe({
     model: "whisper-1",
     file: "path_to_your_audio_file.mp3",
   })

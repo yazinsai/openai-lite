@@ -62,19 +62,19 @@ export class OpenAILite {
     });
   }
 
-  public async createCompletion(params: CompletionParameters) {
+  public async complete(params: CompletionParameters) {
     return this.client.post("/completions", params);
   }
 
-  public async createChatCompletion(params: ChatParameters) {
+  public async chat(params: ChatParameters) {
     return this.client.post("/chat/completions", params);
   }
 
-  public async createEmbedding(params: EmbeddingParameters) {
+  public async embed(params: EmbeddingParameters) {
     return this.client.post("/embeddings", params);
   }
 
-  public async createTranscription(params: TranscriptionParameters) {
+  public async transcribe(params: TranscriptionParameters) {
     return this.client.post("/audio/transcriptions", params);
   }
 }
